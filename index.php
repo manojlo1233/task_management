@@ -1,4 +1,5 @@
-hello world!
 <?php
-    echo 'Hello World'
+    require_once 'db/connection.php';
+
+    echo 'Hello World';
 ?>
