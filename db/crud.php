@@ -8,12 +8,12 @@
             $this->db = $conn;
         }
 
-        public function insert($username, $password, $full_name, $phone, $email, $birth_date, $is_active, $role_id) {
+        public function insert_user($username, $password, $full_name, $phone, $email, $birth_date, $is_active, $role_id) {
             try {
                 $sql = "INSERT 
-                INTO users
+                INTO users (username, password, full_name, phone, email, birth_date, is_active, role_id)
                 VALUES 
-                (0, :username, :password, :full_name, :phone, :email, :birth_date, :is_active, :role_id)";
+                (:username, :password, :full_name, :phone, :email, :birth_date, :is_active, :role_id)";
 
                 $stmt = $this->db->prepare($sql);
                 $stmt->bindparam(':username', $username);
@@ -27,6 +27,17 @@
 
                 $stmt->execute();
                 return true;
+            } catch (PDOException $e) {
+                echo "</br>".$e->getMessage();
+                return false;
+            }
+        }
+
+        public function get_all_users() {
+            try {
+                $sql = "SELECT * from users";
+                $result = $this->db->query($sql);
+                return $result;
             } catch (PDOException $e) {
                 echo "</br>".$e->getMessage();
                 return false;

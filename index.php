@@ -1,5 +1,13 @@
 <?php
-    require_once 'db/connection.php';
+    // Allow the config
+    define('__CONFIG__', true);
+    // Require the config
+    require_once "includes/config.php";
+    require_once 'includes/header.php';
+?>
 
-    echo 'Hello World';
+    
+
+<?php 
+    require_once 'includes/footer.php';
 ?>
